@@ -1,6 +1,7 @@
 -- IMPORTANT NOTE : This is the user config, can be edited. Will be preserved if updated with internal updater
 
 local M = {}
+M.ui, M.options, M.plugin_status, M.mappings, M.custom = {}, {}, {}, {}, {}
 
 -- non plugin ui configs, available without any plugins
 M.ui = {
@@ -48,6 +49,8 @@ M.ui.plugin = {
 M.options = {
    clipboard = "unnamedplus",
    cmdheight = 1,
+   copy_cut = true, -- copy cut text ( x key ), visual and normal mode
+   copy_del = true, -- copy deleted text ( dd key ), visual and normal mode
    expandtab = true,
    hidden = true,
    ignorecase = true,
@@ -79,7 +82,7 @@ M.options.plugin = {
 
 -- enable and disable plugins (false for disable)
 M.plugin_status = {
-   autosave = true, -- to autosave files
+   autosave = false, -- to autosave files
    blankline = true, -- beautified blank lines
    bufferline = true, -- buffer shown as tabs
    cheatsheet = true, -- fuzzy search your commands/keymappings
@@ -87,15 +90,15 @@ M.plugin_status = {
    comment = true, -- universal commentor
    dashboard = true, -- a nice looking dashboard
    esc_insertmode = true, -- escape from insert mode using custom keys
-   galaxyline = true, -- statusline
+   feline = true, -- statusline
    gitsigns = true, -- gitsigns in statusline
    lspkind = true, -- lsp enhancements
    lspsignature = true, -- lsp enhancements
    neoformat = true, -- universal formatter
    neoscroll = true, -- smooth scroll
-   telescope_media = true, -- see media files in telescope picker
-   truezen = true, -- no distraction mode for nvim
-   vim_fugitive = true, -- git in nvim
+   telescope_media = false, -- see media files in telescope picker
+   truezen = false, -- no distraction mode for nvim
+   vim_fugitive = false, -- git in nvim
    vim_matchup = true, -- % magic, match it but improved
 }
 
@@ -148,6 +151,11 @@ M.mappings.plugin = {
    bufferline = {
       next_buffer = "<TAB>", -- next buffer
       prev_buffer = "<S-Tab>", -- previous buffer
+      --better window movement
+      moveLeft = "<C-h>",
+      moveRight = "<C-l>",
+      moveUp = "<C-k>",
+      moveDown = "<C-j>",
    },
    chadsheet = {
       default_keys = "<leader>dk",
@@ -223,6 +231,22 @@ M.mappings.plugin = {
    },
 =======
 >>>>>>> f97490d179bd9b5f5303cc17ef9f984e74d57113
+}
+
+-- user custom mappings
+-- e.g: name = { "mode" , "keys" , "cmd" , "options"}
+-- name: can be empty or something unique with repect to other custom mappings
+--    { mode, key, cmd } or name = { mode, key, cmd }
+-- mode: usage: mode or { mode1, mode2 }, multiple modes allowed, available modes => :h map-modes,
+-- keys: multiple keys allowed, same synxtax as modes
+-- cmd:  for vim commands, must use ':' at start and add <CR> at the end if want to execute
+-- options: see :h nvim_set_keymap() opts section
+M.custom.mappings = {
+   -- clear_all = {
+   --    "n",
+   --    "<leader>cc",
+   --    "gg0vG$d",
+   -- },
 }
 
 return M
