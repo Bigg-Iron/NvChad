@@ -43,14 +43,22 @@ M.better_escape = function()
 end
 
 M.blankline = function()
-   vim.g.indentLine_enabled = 1
-   vim.g.indent_blankline_char = "▏"
-
-   vim.g.indent_blankline_filetype_exclude = { "help", "terminal", "dashboard", "packer" }
-   vim.g.indent_blankline_buftype_exclude = { "terminal" }
-
-   vim.g.indent_blankline_show_trailing_blankline_indent = false
-   vim.g.indent_blankline_show_first_indent_level = false
+   require("indent_blankline").setup {
+      indentLine_enabled = 1,
+      char = "▏",
+      filetype_exclude = {
+         "help",
+         "terminal",
+         "dashboard",
+         "packer",
+         "lspinfo",
+         "TelescopePrompt",
+         "TelescopeResults",
+      },
+      buftype_exclude = { "terminal" },
+      show_trailing_blankline_indent = false,
+      show_first_indent_level = false,
+   }
 end
 
 M.colorizer = function()
